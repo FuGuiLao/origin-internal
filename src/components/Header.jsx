@@ -72,15 +72,12 @@ export const Header = forwardRef(function Header({ className }, ref) {
             <TopLevelNavItem href="https://www.origininvestigations.com" target="_blank">Investigation</TopLevelNavItem>
             <TopLevelNavItem href="https://www.originintelligence.org" target="_blank">Intelligence</TopLevelNavItem>
           </ul>
-          <img src="origin-logo.png" width="25px" alt="" />
         </nav>
         <div className="hidden md:block md:h-5 md:w-px md:bg-zinc-900/10 md:dark:bg-white/15" />
-        <img src="origin-logo.png" width="25px" alt="" />
         <div className="flex gap-4">
           <MobileSearch />
           <ModeToggle />
         </div>
-       <img src="origin-logo.png" width="25px" alt="" />
       </div>
     </motion.div>
   )
