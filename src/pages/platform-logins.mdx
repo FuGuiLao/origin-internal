@@ -1,391 +1,162 @@
 export const description =
-  'On this page, we’ll dive into the different contact endpoints you can use to manage contacts programmatically.'
-
-# Contacts
-
-As the name suggests, contacts are a core part of Protocol — the very reason Protocol exists is so you can have secure conversations with your contacts. On this page, we'll dive into the different contact endpoints you can use to manage contacts programmatically. We'll look at how to query, create, update, and delete contacts. {{ className: 'lead' }}
-
-## The contact model
-
-The contact model contains all the information about your contacts, such as their username, avatar, and phone number. It also contains a reference to the conversation between you and the contact and information about when they were last active on Protocol.
-
-### Properties
-
-<Properties>
-  <Property name="id" type="string">
-    Unique identifier for the contact.
-  </Property>
-  <Property name="username" type="string">
-    The username for the contact.
-  </Property>
-  <Property name="phone_number" type="string">
-    The phone number for the contact.
-  </Property>
-  <Property name="avatar_url" type="string">
-    The avatar image URL for the contact.
-  </Property>
-  <Property name="display_name" type="string">
-    The contact display name in the contact list. By default, this is just the
-    username.
-  </Property>
-  <Property name="conversation_id" type="string">
-    Unique identifier for the conversation associated with the contact.
-  </Property>
-  <Property name="last_active_at" type="timestamp">
-    Timestamp of when the contact was last active on the platform.
-  </Property>
-  <Property name="created_at" type="timestamp">
-    Timestamp of when the contact was created.
-  </Property>
-</Properties>
-
----
-
-## List all contacts {{ tag: 'GET', label: '/v1/contacts' }}
-
-<Row>
-  <Col>
-
-    This endpoint allows you to retrieve a paginated list of all your contacts. By default, a maximum of ten contacts are shown per page.
-
-    ### Optional attributes
-
-    <Properties>
-      <Property name="limit" type="integer">
-        Limit the number of contacts returned.
-      </Property>
-    </Properties>
-
-  </Col>
-  <Col sticky>
-
-    <CodeGroup title="Request" tag="GET" label="/v1/contacts">
-
-    ```bash {{ title: 'cURL' }}
-    curl -G https://api.protocol.chat/v1/contacts \
-      -H "Authorization: Bearer {token}" \
-      -d active=true \
-      -d limit=10
-    ```
-
-    ```js
-    import ApiClient from '@example/protocol-api'
-
-    const client = new ApiClient(token)
-
-    await client.contacts.list()
-    ```
-
-    ```python
-    from protocol_api import ApiClient
-
-    client = ApiClient(token)
-
-    client.contacts.list()
-    ```
-
-    ```php
-    $client = new \Protocol\ApiClient($token);
-
-    $client->contacts->list();
-    ```
-
-    </CodeGroup>
-
-    ```json {{ title: 'Response' }}
-    {
-      "has_more": false,
-      "data": [
-        {
-          "id": "WAz8eIbvDR60rouK",
-          "username": "FrankMcCallister",
-          "phone_number": "1-800-759-3000",
-          "avatar_url": "https://assets.protocol.chat/avatars/frank.jpg",
-          "display_name": null,
-          "conversation_id": "xgQQXg3hrtjh7AvZ",
-          "last_active_at": 705103200,
-          "created_at": 692233200
-        },
-        {
-          "id": "hSIhXBhNe8X1d8Et"
-          // ...
-        }
-      ]
-    }
-    ```
-
-  </Col>
-</Row>
-
----
-
-## Create a contact {{ tag: 'POST', label: '/v1/contacts' }}
-
-<Row>
-  <Col>
-
-    This endpoint allows you to add a new contact to your contact list in Protocol. To add a contact, you must provide their Protocol username and phone number.
-
-    ### Required attributes
-
-    <Properties>
-      <Property name="username" type="string">
-        The username for the contact.
-      </Property>
-      <Property name="phone_number" type="string">
-        The phone number for the contact.
-      </Property>
-    </Properties>
-
-    ### Optional attributes
-
-    <Properties>
-      <Property name="avatar_url" type="string">
-        The avatar image URL for the contact.
-      </Property>
-      <Property name="display_name" type="string">
-        The contact display name in the contact list. By default, this is just the username.
-      </Property>
-    </Properties>
-
-  </Col>
-  <Col sticky>
-
-    <CodeGroup title="Request" tag="POST" label="/v1/contacts">
-
-    ```bash {{ title: 'cURL' }}
-    curl https://api.protocol.chat/v1/contacts \
-      -H "Authorization: Bearer {token}" \
-      -d username="FrankMcCallister" \
-      -d phone_number="1-800-759-3000" \
-      -d avatar_url="https://assets.protocol.chat/avatars/frank.jpg"
-    ```
-
-    ```js
-    import ApiClient from '@example/protocol-api'
-
-    const client = new ApiClient(token)
-
-    await client.contacts.create({
-      username: 'FrankMcCallister',
-      phone_number: '1-800-759-3000',
-      avatar_url: 'https://assets.protocol.chat/avatars/frank.jpg',
-    })
-    ```
-
-    ```python
-    from protocol_api import ApiClient
-
-    client = ApiClient(token)
-
-    client.contacts.create(
-      username="FrankMcCallister",
-      phone_number="1-800-759-3000",
-      avatar_url="https://assets.protocol.chat/avatars/frank.jpg",
-    )
-    ```
-
-    ```php
-    $client = new \Protocol\ApiClient($token);
-
-    $client->contacts->create([
-      'username' => 'FrankMcCallister',
-      'phone_number' => '1-800-759-3000',
-      'avatar_url' => 'https://assets.protocol.chat/avatars/frank.jpg',
-    ]);
-    ```
-
-    </CodeGroup>
-
-    ```json {{ title: 'Response' }}
-    {
-      "id": "WAz8eIbvDR60rouK",
-      "username": "FrankMcCallister",
-      "phone_number": "1-800-759-3000",
-      "avatar_url": "https://assets.protocol.chat/avatars/frank.jpg",
-      "display_name": null,
-      "conversation_id": "xgQQXg3hrtjh7AvZ",
-      "last_active_at": null,
-      "created_at": 692233200
-    }
-    ```
-
-  </Col>
-</Row>
-
----
-
-## Retrieve a contact {{ tag: 'GET', label: '/v1/contacts/:id' }}
-
-<Row>
-  <Col>
-
-    This endpoint allows you to retrieve a contact by providing their Protocol id. Refer to [the list](#the-contact-model) at the top of this page to see which properties are included with contact objects.
-
-  </Col>
-  <Col sticky>
-
-    <CodeGroup title="Request" tag="GET" label="/v1/contacts/WAz8eIbvDR60rouK">
-
-    ```bash {{ title: 'cURL' }}
-    curl https://api.protocol.chat/v1/contacts/WAz8eIbvDR60rouK \
-      -H "Authorization: Bearer {token}"
-    ```
-
-    ```js
-    import ApiClient from '@example/protocol-api'
-
-    const client = new ApiClient(token)
-
-    await client.contacts.get('WAz8eIbvDR60rouK')
-    ```
-
-    ```python
-    from protocol_api import ApiClient
-
-    client = ApiClient(token)
-
-    client.contacts.get("WAz8eIbvDR60rouK")
-    ```
-
-    ```php
-    $client = new \Protocol\ApiClient($token);
-
-    $client->contacts->get('WAz8eIbvDR60rouK');
-    ```
-
-    </CodeGroup>
-
-    ```json {{ title: 'Response' }}
-    {
-      "id": "WAz8eIbvDR60rouK",
-      "username": "FrankMcCallister",
-      "phone_number": "1-800-759-3000",
-      "avatar_url": "https://assets.protocol.chat/avatars/frank.jpg",
-      "display_name": null,
-      "conversation_id": "xgQQXg3hrtjh7AvZ",
-      "last_active_at": 705103200,
-      "created_at": 692233200
-    }
-    ```
-
-  </Col>
-</Row>
-
----
-
-## Update a contact {{ tag: 'PUT', label: '/v1/contacts/:id' }}
-
-<Row>
-  <Col>
-
-    This endpoint allows you to perform an update on a contact. Currently, the only attribute that can be updated on contacts is the `display_name` attribute which controls how a contact appears in your contact list in Protocol.
-
-    ### Optional attributes
-
-    <Properties>
-      <Property name="display_name" type="string">
-        The contact display name in the contact list. By default, this is just the username.
-      </Property>
-    </Properties>
-
-  </Col>
-  <Col sticky>
-
-    <CodeGroup title="Request" tag="PUT" label="/v1/contacts/WAz8eIbvDR60rouK">
-
-    ```bash {{ title: 'cURL' }}
-    curl -X PUT https://api.protocol.chat/v1/contacts/WAz8eIbvDR60rouK \
-      -H "Authorization: Bearer {token}" \
-      -d display_name="UncleFrank"
-    ```
-
-    ```js
-    import ApiClient from '@example/protocol-api'
-
-    const client = new ApiClient(token)
-
-    await client.contacts.update('WAz8eIbvDR60rouK', {
-        display_name: 'UncleFrank',
-    })
-    ```
-
-    ```python
-    from protocol_api import ApiClient
-
-    client = ApiClient(token)
-
-    client.contacts.update("WAz8eIbvDR60rouK", display_name="UncleFrank")
-    ```
-
-    ```php
-    $client = new \Protocol\ApiClient($token);
-
-    $client->contacts->update('WAz8eIbvDR60rouK', [
-      'display_name' => 'UncleFrank',
-    ]);
-    ```
-
-    </CodeGroup>
-
-    ```json {{ title: 'Response' }}
-    {
-      "id": "WAz8eIbvDR60rouK",
-      "username": "FrankMcCallister",
-      "phone_number": "1-800-759-3000",
-      "avatar_url": "https://assets.protocol.chat/avatars/frank.jpg",
-      "display_name": "UncleFrank",
-      "conversation_id": "xgQQXg3hrtjh7AvZ",
-      "last_active_at": 705103200,
-      "created_at": 692233200
-    }
-    ```
-
-  </Col>
-</Row>
-
----
-
-## Delete a contact {{ tag: 'DELETE', label: '/v1/contacts/:id' }}
-
-<Row>
-  <Col>
-
-    This endpoint allows you to delete contacts from your contact list in Protocol. Note: This will also delete your conversation with the given contact.
-
-  </Col>
-  <Col sticky>
-
-    <CodeGroup title="Request" tag="DELETE" label="/v1/contacts/WAz8eIbvDR60rouK">
-
-    ```bash {{ title: 'cURL' }}
-    curl -X DELETE https://api.protocol.chat/v1/contacts/WAz8eIbvDR60rouK \
-      -H "Authorization: Bearer {token}"
-    ```
-
-    ```js
-    import ApiClient from '@example/protocol-api'
-
-    const client = new ApiClient(token)
-
-    await client.contacts.delete('WAz8eIbvDR60rouK')
-    ```
-
-    ```python
-    from protocol_api import ApiClient
-
-    client = ApiClient(token)
-
-    client.contacts.delete("WAz8eIbvDR60rouK")
-    ```
-
-    ```php
-    $client = new \Protocol\ApiClient($token);
-
-    $client->contacts->delete('WAz8eIbvDR60rouK');
-    ```
-
-    </CodeGroup>
-
-  </Col>
-</Row>
+  'This hub is your go-to place for documents, training materials, and essential tools.'
+
+# Platform Logins
+
+Below are links to the login pages for the differnt Agency platforms. {{ className: 'lead' }}
+
+## All Personnel
+
+<div className="not-prose">
+  <Button
+    href="https://login.live.com"
+    variant="text"
+    arrow="right"
+    children="Microsoft 365"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://login.live.com"
+    variant="text"
+    arrow="right"
+    children="Microsoft Teams"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://app.gusto.com/login"
+    variant="text"
+    arrow="right"
+    children="Gusto Payroll and HR"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://www.udemy.com/join/login-popup/?locale=en_US&response_type=html&next=https%3A%2F%2Fwww.udemy.com%2Fjoin%2Flogin-popup%2F%3Flocale%3Den_US%26response_type%3Dhtml%26next%3Dhttps%253A%252F%252Fwww.udemy.com%252F"
+    variant="text"
+    arrow="right"
+    children="Udemy"
+  />
+</div>
+
+## Case Management
+
+<div className="not-prose">
+  <Button
+    href="https://origin.viewcases.com"
+    variant="text"
+    arrow="right"
+    children="Trackops"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://airtable.com/login?_gl=1*18rje1b*_ga*MjI0NjM2MjAuMTcwNTY4OTc3OA..*_ga_VJY8J9RFZM*MTcwNjA0OTA1OS4yLjEuMTcwNjA0OTA3Mi40Ny4wLjA."
+    variant="text"
+    arrow="right"
+    children="Airtable"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://support.docusign.com/s/contactSupport?language=en_US&rsc_301"
+    variant="text"
+    arrow="right"
+    children="DocuSign / PowerForms"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://secure.lawpay.com/login"
+    variant="text"
+    arrow="right"
+    children="Lawpay"
+  />
+</div>
+
+## Client Relations
+
+<div className="not-prose">
+  <Button
+    href="https://app.nutshell.com/auth"
+    variant="text"
+    arrow="right"
+    children="Nutshell CRM and Marketing"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://app.apollo.io/#/login"
+    variant="text"
+    arrow="right"
+    children="Apollo Sales Intelligence"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://calendly.com/login"
+    variant="text"
+    arrow="right"
+    children="Calendly"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://support.docusign.com/s/contactSupport?language=en_US&rsc_301"
+    variant="text"
+    arrow="right"
+    children="DocuSign / PowerForms"
+  />
+</div>
+
+## Investigators / Analysts
+
+<div className="not-prose">
+  <Button
+    href="https://origin.viewcases.com"
+    variant="text"
+    arrow="right"
+    children="Trackops"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://clear.thomsonreuters.com/"
+    variant="text"
+    arrow="right"
+    children="Clear"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://search.tracers.com/TracersInfoContent/Login.aspx?_ga=2.147666228.269612286.1656976043-1499210223.1656976043"
+    variant="text"
+    arrow="right"
+    children="Tracers"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://www.imvrs.com/members.htm"
+    variant="text"
+    arrow="right"
+    children="DataLink / IMVRS (DMV)"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://www.ncasearch.com/login.htm"
+    variant="text"
+    arrow="right"
+    children="NCA Search / USPS"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://pimeyes.com/en/login"
+    variant="text"
+    arrow="right"
+    children="PimEyes (Facial Recognition)"
+  />
+</div>
