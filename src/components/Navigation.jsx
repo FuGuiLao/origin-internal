@@ -185,12 +185,13 @@ function NavigationGroup({ group, className }) {
 
 export const navigation = [
   {
-    title: 'Policy',
+    title: 'Manual of Policy and Procedure',
     links: [
-      { title: 'General', href: '/' },
-      { title: 'Investigative', href: '/quickstart' },
-      { title: 'Case Management', href: '/sdks' },
-      { title: 'Client Relations', href: '/authentication' }
+      { title: 'Introduction', href: '/' },
+      { title: 'General', href: '/general' },
+      { title: 'Investigative', href: '/investigative' },
+      { title: 'Case Management', href: '/case-management' },
+      { title: 'Client Relations', href: '/client-relations' }
     ],
   },
   {
