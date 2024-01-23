@@ -1,7 +1,7 @@
 export function Logo(props) {
    return (
     <div>
-   ORIGIN / Investigation / Intelligence
+   <b>ORIGIN</b> / Investigation / Intelligence
     </div>
 
     
