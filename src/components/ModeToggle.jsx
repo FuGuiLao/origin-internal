@@ -43,7 +43,7 @@ export function ModeToggle() {
   return (
     <button
       type="button"
-      className="flex h-60 w-60 items-center justify-center ml-0 pl-0 rounded-md transition hover:bg-zinc-900/5 dark:hover:bg-white/5"
+      className="flex h-6 w-5 items-center justify-center rounded-md transition hover:bg-zinc-900/5 dark:hover:bg-white/5"
       aria-label="Toggle dark mode"
       onClick={toggleMode}
     >
