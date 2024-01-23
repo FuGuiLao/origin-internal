@@ -193,6 +193,7 @@ export const navigation = [
       { title: 'Powerforms', href: '/powerforms' },
       { title: 'Equipment Support', href: '/equipment-support' },
       { title: 'Training', href: '/training' },
+      { title: 'Marketing Materials', href: '/marketing' },
     ],
   },{
     title: 'Manual of Policy and Procedure',
