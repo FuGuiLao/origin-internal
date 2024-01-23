@@ -198,10 +198,10 @@ export const navigation = [
   },{
     title: 'Manual of Policy and Procedure',
     links: [
-      { title: 'General', href: '/general' },
-      { title: 'Investigative', href: '/investigative' },
-      { title: 'Case Management', href: '/case-management' },
-      { title: 'Client Relations', href: '/client-relations' }
+      { title: 'All Personnel', href: '/general' },
+      { title: 'Investigative Division', href: '/investigative' },
+      { title: 'Case Management Division', href: '/case-management' },
+      { title: 'Client Relations Division', href: '/client-relations' }
     ],
   },
 ]
