@@ -185,25 +185,21 @@ function NavigationGroup({ group, className }) {
 
 export const navigation = [
   {
-    title: 'Guides',
+    title: 'Policy',
     links: [
-      { title: 'Introduction', href: '/' },
-      { title: 'Quickstart', href: '/quickstart' },
-      { title: 'SDKs', href: '/sdks' },
-      { title: 'Authentication', href: '/authentication' },
-      { title: 'Pagination', href: '/pagination' },
-      { title: 'Errors', href: '/errors' },
-      { title: 'Webhooks', href: '/webhooks' },
+      { title: 'General', href: '/' },
+      { title: 'Investigative', href: '/quickstart' },
+      { title: 'Case Management', href: '/sdks' },
+      { title: 'Client Relations', href: '/authentication' }
     ],
   },
   {
     title: 'Resources',
     links: [
-      { title: 'Contacts', href: '/contacts' },
-      { title: 'Conversations', href: '/conversations' },
-      { title: 'Messages', href: '/messages' },
-      { title: 'Groups', href: '/groups' },
-      { title: 'Attachments', href: '/attachments' },
+      { title: 'Platform Logins', href: '/contacts' },
+      { title: 'Platform Support', href: '/conversations' },
+      { title: 'Equipment Support', href: '/messages' },
+      { title: 'Training', href: '/groups' },
     ],
   },
 ]
