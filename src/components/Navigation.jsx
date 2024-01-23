@@ -188,6 +188,11 @@ export const navigation = [
     title: 'Internal Resources',
     links: [
       { title: 'Introduction', href: '/' },
+      { title: 'Platform Logins', href: '/platform-logins' },
+      { title: 'Platform Support', href: '/platform-support' },
+      { title: 'Powerforms', href: '/powerforms' },
+      { title: 'Equipment Support', href: '/equipment-support' },
+      { title: 'Training', href: '/training' },
     ],
   },{
     title: 'Manual of Policy and Procedure',
@@ -196,15 +201,6 @@ export const navigation = [
       { title: 'Investigative', href: '/investigative' },
       { title: 'Case Management', href: '/case-management' },
       { title: 'Client Relations', href: '/client-relations' }
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      { title: 'Platform Logins', href: '/platform-logins' },
-      { title: 'Platform Support', href: '/platform-support' },
-      { title: 'Equipment Support', href: '/equipment-support' },
-      { title: 'Training', href: '/training' },
     ],
   },
 ]
