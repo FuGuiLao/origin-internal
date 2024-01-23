@@ -190,7 +190,7 @@ export const navigation = [
       { title: 'Introduction', href: '/' },
       { title: 'Platform Logins', href: '/platform-logins' },
       { title: 'Platform Support', href: '/platform-support' },
-      { title: 'Powerforms', href: '/powerforms' },
+      { title: 'PowerForms', href: '/powerforms' },
       { title: 'Equipment Support', href: '/equipment-support' },
       { title: 'Training', href: '/training' },
       { title: 'Marketing Materials', href: '/marketing' },
