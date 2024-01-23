@@ -88,7 +88,7 @@ var option_PDFF = {
 
 	maxTextureSize: 1600,
 
-	backgroundImage: "book/pflip/background.jpg",
+	backgroundImage: "mpp-general/pflip/background.jpg",
 
     backgroundColor: "#fff",
 
@@ -104,4 +104,4 @@ var option_PDFF = {
 
 
 
-var pdfflipLocation = "book/pflip/";
+var pdfflipLocation = "mpp-general/pflip/";
