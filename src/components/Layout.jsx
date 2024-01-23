@@ -24,7 +24,6 @@ export function Layout({ children, sections = [] }) {
             </div>
             <Header />
             <Navigation className="hidden lg:mt-10 lg:block" />
-                    <div style="position: absolute; bottom:0;"><img src="origin-logo.png" width="200px" alt="" /></div>
           </div>
         </motion.header>
         <div className="relative px-4 pt-14 sm:px-6 lg:px-8">
