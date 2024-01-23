@@ -197,10 +197,10 @@ export const navigation = [
   {
     title: 'Resources',
     links: [
-      { title: 'Platform Logins', href: '/contacts' },
-      { title: 'Platform Support', href: '/conversations' },
-      { title: 'Equipment Support', href: '/messages' },
-      { title: 'Training', href: '/groups' },
+      { title: 'Platform Logins', href: '/platform-logins' },
+      { title: 'Platform Support', href: '/platform-support' },
+      { title: 'Equipment Support', href: '/equipment-support' },
+      { title: 'Training', href: '/training' },
     ],
   },
 ]
