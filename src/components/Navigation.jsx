@@ -211,7 +211,7 @@ export function Navigation(props) {
     <nav {...props}>
       <ul role="list">
         <TopLevelNavItem href="/">Home</TopLevelNavItem>
-        <TopLevelNavItem href="https://www.origininvestigation.com">Investigation Website</TopLevelNavItem>
+        <TopLevelNavItem href="https://www.origininvestigations.com">Investigation Website</TopLevelNavItem>
         <TopLevelNavItem href="https://www.originintelligence.org">Intelligence Website</TopLevelNavItem>
         {navigation.map((group, groupIndex) => (
           <NavigationGroup
