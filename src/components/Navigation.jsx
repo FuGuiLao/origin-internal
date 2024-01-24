@@ -96,7 +96,7 @@ function ActivePageMarker({ group, pathname }) {
   return (
     <motion.div
       layout
-      className="absolute left-2 h-6 w-px bg-emerald-500"
+      className="absolute left-2 h-6 w-px bg-red-500"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0.2 } }}
       exit={{ opacity: 0 }}
@@ -190,17 +190,18 @@ export const navigation = [
       { title: 'Introduction', href: '/' },
       { title: 'Platform Logins', href: '/platform-logins' },
       { title: 'Platform Support', href: '/platform-support' },
-      { title: 'Powerforms', href: '/powerforms' },
+      { title: 'PowerForms', href: '/powerforms' },
       { title: 'Equipment Support', href: '/equipment-support' },
       { title: 'Training', href: '/training' },
+      { title: 'Marketing Materials', href: '/marketing' },
     ],
   },{
     title: 'Manual of Policy and Procedure',
     links: [
-      { title: 'General', href: '/general' },
-      { title: 'Investigative', href: '/investigative' },
-      { title: 'Case Management', href: '/case-management' },
-      { title: 'Client Relations', href: '/client-relations' }
+      { title: 'All Personnel', href: '/general' },
+      { title: 'Investigative Division', href: '/investigative' },
+      { title: 'Case Management Division', href: '/case-management' },
+      { title: 'Client Relations Division', href: '/client-relations' }
     ],
   },
 ]
@@ -209,9 +210,9 @@ export function Navigation(props) {
   return (
     <nav {...props}>
       <ul role="list">
-        <TopLevelNavItem href="/">API</TopLevelNavItem>
-        <TopLevelNavItem href="#">Documentation</TopLevelNavItem>
-        <TopLevelNavItem href="#">Support</TopLevelNavItem>
+        <TopLevelNavItem href="/">Home</TopLevelNavItem>
+        <TopLevelNavItem href="https://www.origininvestigations.com">Investigation Website</TopLevelNavItem>
+        <TopLevelNavItem href="https://www.originintelligence.org">Intelligence Website</TopLevelNavItem>
         {navigation.map((group, groupIndex) => (
           <NavigationGroup
             key={group.title}

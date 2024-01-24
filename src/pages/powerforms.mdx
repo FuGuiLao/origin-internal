@@ -1,445 +1,131 @@
 export const description =
-  'On this page, we’ll dive into the different group endpoints you can use to manage groups programmatically.'
-
-# Powerforms
-
-Groups are where communities live in Protocol — they are a collection of contacts you're talking to all at once. On this page, we'll dive into the different group endpoints you can use to manage groups programmatically. We'll look at how to query, create, update, and delete groups. {{ className: 'lead' }}
-
-## The group model
-
-The group model contains all the information about your groups, including what contacts are in the group and the group's name, description, and avatar.
-
-### Properties
-
-<Properties>
-  <Property name="id" type="string">
-    Unique identifier for the group.
-  </Property>
-  <Property name="name" type="string">
-    The name for the group.
-  </Property>
-  <Property name="description" type="string">
-    The description for the group.
-  </Property>
-  <Property name="avatar_url" type="string">
-    The avatar image URL for the group.
-  </Property>
-  <Property name="conversation_id" type="string">
-    Unique identifier for the conversation that belongs to the group.
-  </Property>
-  <Property name="contacts" type="array">
-    An array of contact objects that are members of the group.
-  </Property>
-  <Property name="created_at" type="timestamp">
-    Timestamp of when the group was created.
-  </Property>
-  <Property name="archived_at" type="timestamp">
-    Timestamp of when the group was archived.
-  </Property>
-</Properties>
-
----
-
-## List all groups {{ tag: 'GET', label: '/v1/groups' }}
-
-<Row>
-  <Col>
-
-    This endpoint allows you to retrieve a paginated list of all your groups. By default, a maximum of ten groups are shown per page.
-
-    ### Optional attributes
-
-    <Properties>
-      <Property name="limit" type="integer">
-        Limit the number of groups returned.
-      </Property>
-      <Property name="archived" type="boolean">
-        Only show groups that are archived when set to `true`.
-      </Property>
-    </Properties>
-
-  </Col>
-  <Col sticky>
-
-    <CodeGroup title="Request" tag="GET" label="/v1/groups">
-
-    ```bash {{ title: 'cURL' }}
-    curl -G https://api.protocol.chat/v1/groups \
-      -H "Authorization: Bearer {token}" \
-      -d limit=10
-    ```
-
-    ```js
-    import ApiClient from '@example/protocol-api'
-
-    const client = new ApiClient(token)
-
-    await client.groups.list()
-    ```
-
-    ```python
-    from protocol_api import ApiClient
-
-    client = ApiClient(token)
-
-    client.groups.list()
-    ```
-
-    ```php
-    $client = new \Protocol\ApiClient($token);
-
-    $client->groups->list();
-    ```
-
-    </CodeGroup>
-
-    ```json {{ title: 'Response' }}
-    {
-      "has_more": false,
-      "data": [
-        {
-          "id": "l7cGNIBKZiNJ6wqF",
-          "name": "Plaza Hotel",
-          "description": "World-renowned.",
-          "avatar_url": "https://assets.protocol.chat/avatars/plazahotel.jpg",
-          "conversation_id": "ZYjVAbCE9g5XRlra",
-          "contacts": [
-            {
-              "username": "Hector"
-              // ...
-            },
-            {
-              "username": "Cedric"
-              // ...
-            },
-            {
-              "username": "Hester"
-              // ...
-            },
-            {
-              "username": "Cliff"
-              // ...
-            }
-          ],
-          "created_at": 692233200,
-          "archived_at": null
-        },
-        {
-          "id": "hSIhXBhNe8X1d8Et"
-          // ...
-        }
-      ]
-    }
-    ```
-
-  </Col>
-</Row>
-
----
-
-## Create a group {{ tag: 'POST', label: '/v1/groups' }}
-
-<Row>
-  <Col>
-
-    This endpoint allows you to create a new group conversation between you and a group of your Protocol contacts.
-
-    ### Required attributes
-
-    <Properties>
-      <Property name="name" type="string">
-        The name for the group.
-      </Property>
-    </Properties>
-
-    ### Optional attributes
-
-    <Properties>
-      <Property name="description" type="string">
-        The description for the group.
-      </Property>
-      <Property name="avatar_url" type="string">
-        The avatar image URL for the group.
-      </Property>
-      <Property name="contacts" type="array">
-        An array of contact objects that are members of the group.
-      </Property>
-    </Properties>
-
-  </Col>
-  <Col sticky>
-
-    <CodeGroup title="Request" tag="POST" label="/v1/groups">
-
-    ```bash {{ title: 'cURL' }}
-    curl https://api.protocol.chat/v1/groups \
-      -H "Authorization: Bearer {token}" \
-      -d name="Plaza Hotel"
-    ```
-
-    ```js
-    import ApiClient from '@example/protocol-api'
-
-    const client = new ApiClient(token)
-
-    await client.groups.create({
-      name: 'Plaza Hotel',
-    })
-    ```
-
-    ```python
-    from protocol_api import ApiClient
-
-    client = ApiClient(token)
-
-    client.groups.create(name="Plaza Hotel")
-    ```
-
-    ```php
-    $client = new \Protocol\ApiClient($token);
-
-    $client->groups->create([
-      'name' => 'Plaza Hotel',
-    ]);
-    ```
-
-    </CodeGroup>
-
-    ```json {{ title: 'Response' }}
-    {
-      "id": "l7cGNIBKZiNJ6wqF",
-      "name": "Plaza Hotel",
-      "description": null,
-      "avatar_url": null,
-      "conversation_id": "ZYjVAbCE9g5XRlra",
-      "contacts": [],
-      "created_at": 692233200,
-      "archived_at": null
-    }
-    ```
-
-  </Col>
-</Row>
-
----
-
-## Retrieve a group {{ tag: 'GET', label: '/v1/groups/:id' }}
-
-<Row>
-  <Col>
-
-    This endpoint allows you to retrieve a group by providing the group id. Refer to [the list](#the-group-model) at the top of this page to see which properties are included with group objects.
-
-  </Col>
-  <Col sticky>
-
-    <CodeGroup title="Request" tag="GET" label="/v1/groups/L7cGNIBKZiNJ6wqF">
-
-    ```bash {{ title: 'cURL' }}
-    curl https://api.protocol.chat/v1/groups/L7cGNIBKZiNJ6wqF \
-      -H "Authorization: Bearer {token}"
-    ```
-
-    ```js
-    import ApiClient from '@example/protocol-api'
-
-    const client = new ApiClient(token)
-
-    await client.groups.get('L7cGNIBKZiNJ6wqF')
-    ```
-
-    ```python
-    from protocol_api import ApiClient
-
-    client = ApiClient(token)
-
-    client.groups.get("L7cGNIBKZiNJ6wqF")
-    ```
-
-    ```php
-    $client = new \Protocol\ApiClient($token);
-
-    $client->groups->get('L7cGNIBKZiNJ6wqF');
-    ```
-
-    </CodeGroup>
-
-    ```json {{ title: 'Response' }}
-    {
-      "id": "l7cGNIBKZiNJ6wqF",
-      "name": "Plaza Hotel",
-      "description": "World-renowned.",
-      "avatar_url": "https://assets.protocol.chat/avatars/plazahotel.jpg",
-      "conversation_id": "ZYjVAbCE9g5XRlra",
-      "contacts": [
-        {
-          "username": "Hector"
-          // ...
-        },
-        {
-          "username": "Cedric"
-          // ...
-        },
-        {
-          "username": "Hester"
-          // ...
-        },
-        {
-          "username": "Cliff"
-          // ...
-        }
-      ],
-      "created_at": 692233200,
-      "archived_at": null
-    }
-    ```
-
-  </Col>
-</Row>
-
----
-
-## Update a group {{ tag: 'PUT', label: '/v1/groups/:id' }}
-
-<Row>
-  <Col>
-
-    This endpoint allows you to perform an update on a group. Examples of updates are changing the name, description, and avatar or adding and removing contacts from the group.
-
-    ### Optional attributes
-
-    <Properties>
-      <Property name="name" type="string">
-        The new name for the group.
-      </Property>
-      <Property name="description" type="string">
-        The new description for the group.
-      </Property>
-      <Property name="avatar_url" type="string">
-        The new avatar image URL for the group.
-      </Property>
-      <Property name="contacts" type="array">
-        An array of contact objects that are members of the group.
-      </Property>
-      <Property name="archived_at" type="timestamp">
-        Timestamp of when the group was archived.
-      </Property>
-    </Properties>
-
-  </Col>
-  <Col sticky>
-
-    <CodeGroup title="Request" tag="PUT" label="/v1/groups/L7cGNIBKZiNJ6wqF">
-
-    ```bash {{ title: 'cURL' }}
-    curl -X PUT https://api.protocol.chat/v1/groups/L7cGNIBKZiNJ6wqF \
-      -H "Authorization: Bearer {token}" \
-      -d description="The finest in New York."
-    ```
-
-    ```js
-    import ApiClient from '@example/protocol-api'
-
-    const client = new ApiClient(token)
-
-    await client.groups.update('L7cGNIBKZiNJ6wqF', {
-        description: 'The finest in New York.',
-    })
-    ```
-
-    ```python
-    from protocol_api import ApiClient
-
-    client = ApiClient(token)
-
-    client.groups.update("L7cGNIBKZiNJ6wqF", description="The finest in New York.")
-    ```
-
-    ```php
-    $client = new \Protocol\ApiClient($token);
-
-    $client->groups->update('L7cGNIBKZiNJ6wqF', [
-      'description' => 'The finest in New York.',
-    ]);
-    ```
-
-    </CodeGroup>
-
-    ```json {{ title: 'Response' }}
-    {
-      "id": "l7cGNIBKZiNJ6wqF",
-      "name": "Plaza Hotel",
-      "description": "The finest in New York.",
-      "avatar_url": "https://assets.protocol.chat/avatars/plazahotel.jpg",
-      "conversation_id": "ZYjVAbCE9g5XRlra",
-      "contacts": [
-        {
-          "username": "Hector"
-          // ...
-        },
-        {
-          "username": "Cedric"
-          // ...
-        },
-        {
-          "username": "Hester"
-          // ...
-        },
-        {
-          "username": "Cliff"
-          // ...
-        }
-      ],
-      "created_at": 692233200,
-      "archived_at": null
-    },
-    ```
-
-  </Col>
-</Row>
-
----
-
-## Delete a group {{ tag: 'DELETE', label: '/v1/groups/:id' }}
-
-<Row>
-  <Col>
-
-    This endpoint allows you to delete groups. Note: This will permanently delete the group, including the messages — archive it instead if you want to be able to restore it later.
-
-  </Col>
-  <Col sticky>
-
-    <CodeGroup title="Request" tag="DELETE" label="/v1/groups/L7cGNIBKZiNJ6wqF">
-
-    ```bash {{ title: 'cURL' }}
-    curl -X DELETE https://api.protocol.chat/v1/groups/L7cGNIBKZiNJ6wqF \
-      -H "Authorization: Bearer {token}"
-    ```
-
-    ```js
-    import ApiClient from '@example/protocol-api'
-
-    const client = new ApiClient(token)
-
-    await client.groups.delete('L7cGNIBKZiNJ6wqF')
-    ```
-
-    ```python
-    from protocol_api import ApiClient
-
-    client = ApiClient(token)
-
-    client.groups.delete("L7cGNIBKZiNJ6wqF")
-    ```
-
-    ```php
-    $client = new \Protocol\ApiClient($token);
-
-    $client->groups->delete('L7cGNIBKZiNJ6wqF');
-    ```
-
-    </CodeGroup>
-
-  </Col>
-</Row>
+  'This hub is your go-to place for documents, training materials, and essential tools.'
+
+# PowerForms
+
+Below are links to support resources for available Agency equipment. {{ className: 'lead' }}
+
+<Note>
+ Please let your supervisior know if you have suggestion for a new form that is needed.
+</Note>
+
+## Investigative Division
+<div className="not-prose">
+  <Button
+    href="https://na3.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=99c30bff-6851-4c78-8955-e44bb762c8a1&env=na3&acct=65225aba-0a72-4b99-92a5-96d97d76fef1&v=2"
+    variant="text"
+    arrow="right"
+    children="California DMV (ANI Request)"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://na3.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=e41434ee-f130-4291-8517-faf86fd9dd09&env=na3&acct=65225aba-0a72-4b99-92a5-96d97d76fef1&v=2"
+    variant="text"
+    arrow="right"
+    children="Proof of Service (POS-010)"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://na3.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=60e00739-05da-4fd6-9edc-4ecde8c5bac6&env=na3&acct=65225aba-0a72-4b99-92a5-96d97d76fef1&v=2"
+    variant="text"
+    arrow="right"
+    children="Proof of Service (SUBP-020)"
+  />
+</div>
+
+### Repwest Forms
+<div className="not-prose">
+  <Button
+    href="https://na3.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=93c5c99b-385f-4534-bf81-5e08c314a19f&env=na3&acct=65225aba-0a72-4b99-92a5-96d97d76fef1&v=2"
+    variant="text"
+    arrow="right"
+    children="Repwest / Bodily Injury Affidavit"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://na3.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=43174e04-f716-4fd3-b990-7faaba3bf832&env=na3&acct=65225aba-0a72-4b99-92a5-96d97d76fef1&v=2"
+    variant="text"
+    arrow="right"
+    children="Repwest / Bodily Injury Affidavit (Spanish)"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://na3.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=2afe95cf-5736-4b5d-b630-eea86691654b&env=na3&acct=65225aba-0a72-4b99-92a5-96d97d76fef1&v=2"
+    variant="text"
+    arrow="right"
+    children="Repwest / Claim Withdrawl"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://na3.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=d613dc28-68cb-4766-9255-500c78322b93&env=na3&acct=65225aba-0a72-4b99-92a5-96d97d76fef1&v=2"
+    variant="text"
+    arrow="right"
+    children="Repwest / Claim Withdrawl (Spanish)"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://na3.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=c0af877c-9e97-4cf2-8df3-8ee264ad0973&env=na3&acct=65225aba-0a72-4b99-92a5-96d97d76fef1&v=2"
+    variant="text"
+    arrow="right"
+    children="Repwest / Claim Withdrawl (Guardian)"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://na3.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=9b11dda5-490d-44df-97f8-85950845b183&env=na3&acct=65225aba-0a72-4b99-92a5-96d97d76fef1&v=2"
+    variant="text"
+    arrow="right"
+    children="Repwest / Intentional Act Form"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://na3.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=34622e49-0277-4590-ab04-a2bd09c1d1b4&env=na3&acct=65225aba-0a72-4b99-92a5-96d97d76fef1&v=2"
+    variant="text"
+    arrow="right"
+    children="Repwest / Intentional Act Form (Spanish)"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://na3.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=003e340a-25fa-4f65-bdf6-90fd39ccfb65&env=na3&acct=65225aba-0a72-4b99-92a5-96d97d76fef1&v=2"
+    variant="text"
+    arrow="right"
+    children="Repwest / Equipment Allegation Form"
+  />
+</div>
+
+## Client Relations Division
+
+<div className="not-prose">
+  <Button
+    href="https://na3.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=0453b5bd-767a-43f0-8a06-62e42017369d&env=na3&acct=65225aba-0a72-4b99-92a5-96d97d76fef1&v=2"
+    variant="text"
+    arrow="right"
+    children="Investigative Agreement"
+  />
+</div>
+
+## Case Management Division
+<div className="not-prose">
+  <Button
+    href="https://powerforms.docusign.net/e4f4bb9e-d07d-404d-b0db-7a4798276689?env=na3&acct=65225aba-0a72-4b99-92a5-96d97d76fef1&accountId=65225aba-0a72-4b99-92a5-96d97d76fef1"
+    variant="text"
+    arrow="right"
+    children="Specialized Data Request"
+  />
+</div>
+<div className="not-prose">
+  <Button
+    href="https://na3.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=d1bddc0f-81d8-4a82-abf2-97743e406dfc&env=na3&acct=65225aba-0a72-4b99-92a5-96d97d76fef1&v=2"
+    variant="text"
+    arrow="right"
+    children="Enhanced Due Diligence Request"
+  />
+</div>
