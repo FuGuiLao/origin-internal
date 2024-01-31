@@ -19,7 +19,7 @@ export function Login() {
               type="password"
               className="w-full border px-2 py-1 text-lg placeholder-gray-400 focus:ring-0 focus:ring-offset-0"
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="access code"
+              placeholder="Access Code"
             />
           </div>
           <div className="m-4">
