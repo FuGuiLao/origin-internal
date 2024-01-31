@@ -13,18 +13,18 @@ export function Login() {
   return (
     <div className="fixed left-1/2 top-1/2 z-50 block h-full w-full -translate-x-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-sm">
       <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="shadow-white-700 z-10 flex w-[350px] justify-between rounded-xl bg-white shadow-md shadow-slate-950">
+        <div className="shadow-white-700 z-10 flex w-[350px] justify-between rounded-xl bg-white shadow-md shadow-slate-900">
           <div className="m-4">
             <input
               type="password"
               className="w-full border px-2 py-1 text-lg placeholder-gray-400 focus:ring-0 focus:ring-offset-0"
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Input password here!"
+              placeholder="access code"
             />
           </div>
           <div className="m-4">
             <button
-              className="rounded-lg bg-slate-700 px-3 py-2 text-sm font-medium text-white hover:bg-slate-900"
+              className="rounded-lg bg-slate-900 px-3 py-2 text-sm font-medium text-white hover:bg-slate-900"
               onClick={handleClick}
             >
               Confirm
