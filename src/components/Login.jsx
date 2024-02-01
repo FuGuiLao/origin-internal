@@ -13,7 +13,7 @@ export function Login() {
   return (
     <div className="fixed left-1/2 top-1/2 z-50 block h-full w-full -translate-x-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-sm">
       <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="shadow-white-700 z-10 flex w-[350px] justify-between rounded bg-white shadow-md shadow-zinc-900">
+        <div className="shadow-white-700 z-10 flex w-[300px] justify-between rounded bg-white shadow-md shadow-zinc-900">
           <div className="m-4">
             <input
               type="password"
