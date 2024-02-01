@@ -17,14 +17,14 @@ export function Login() {
           <div className="m-4">
             <input
               type="password"
-              className="w-full border px-2 py-1 text-lg placeholder-gray-400 focus:ring-0 focus:ring-offset-0"
+              className="w-full border px-2 py-1 text-sm placeholder-gray-400 focus:ring-0 focus:ring-offset-0"
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Access Code"
             />
           </div>
           <div className="m-4">
             <button
-              className="rounded-lg bg-slate-900 px-3 py-2 text-sm font-medium text-white hover:bg-slate-900"
+              className="rounded bg-slate-900 px-3 py-2 text-sm font-medium text-white hover:bg-slate-900"
               onClick={handleClick}
             >
               Confirm
