@@ -194,6 +194,7 @@ export const navigation = [
       { title: 'Equipment Support', href: '/equipment-support' },
       { title: 'Training', href: '/training' },
       { title: 'Marketing Materials', href: '/marketing' },
+      { title: 'Contact Information', href: '/contact-information' },
     ],
   },{
     title: 'Manual of Policy and Procedure',
