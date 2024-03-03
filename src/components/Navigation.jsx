@@ -198,6 +198,13 @@ export const navigation = [
       { title: 'Contact Information', href: '/contact-information' },
     ],
   },{
+    title: 'Employee Benefits',
+    links: [
+      { title: 'Health Insurance', href: '/benefits-health' },
+      { title: 'Life & Disability Insurance', href: '/benefits-insurance' },
+      { title: 'Retirement & Investment', href: '/benefits-investment' },
+      ],
+  },{
     title: 'Manual of Policy and Procedure',
     links: [
       { title: 'All Personnel', href: '/general' },
