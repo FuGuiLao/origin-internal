@@ -208,7 +208,7 @@ export const navigation = [
     title: 'Manual of Policy and Procedure',
     links: [
       { title: 'All Personnel', href: '/general' },
-      { title: 'Investigation Division', href: '/investigative' },
+      { title: 'Investigation Division', href: '/investigation' },
       { title: 'Case Management Division', href: '/case-management' },
       { title: 'Client Relations Division', href: '/client-relations' }
     ],
