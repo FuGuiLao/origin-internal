@@ -194,6 +194,7 @@ export const navigation = [
       { title: 'Documents', href: '/documents' },
       { title: 'Equipment Support', href: '/equipment-support' },
       { title: 'Training', href: '/training' },
+      { title: 'Travel', href: '/travel' },
       { title: 'Marketing Materials', href: '/marketing' },
       { title: 'Contact Information', href: '/contact-information' },
     ],
