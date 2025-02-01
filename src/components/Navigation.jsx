@@ -192,6 +192,7 @@ export const navigation = [
       { title: 'Platform Support', href: '/platform-support' },
       { title: 'Equipment Support', href: '/equipment-support' },
       { title: 'Travel', href: '/travel' },
+      { title: 'Expenses', href: '/expenses' },
       { title: 'PowerForms', href: '/powerforms' },
       { title: 'Documents', href: '/documents' },
       { title: 'Training', href: '/training' },
