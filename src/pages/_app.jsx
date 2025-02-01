@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { Router, useRouter } from 'next/router'
 import { MDXProvider } from '@mdx-js/react'
+import { SessionProvider } from "next-auth/react"
 
 import { Layout } from '@/components/Layout'
 import * as mdxComponents from '@/components/mdx'
@@ -20,7 +21,7 @@ export default function App({ Component, pageProps }) {
   let router = useRouter()
 
   return (
-    <>
+      <SessionProvider session={pageProps.session}>
       <Head>
         {router.pathname === '/' ? (
           <title>ORIGIN / Resource Hub</title>
@@ -34,6 +35,6 @@ export default function App({ Component, pageProps }) {
           <Component {...pageProps} />
         </Layout>
       </MDXProvider>
-    </>
+      </SessionProvider>
   )
 }

@@ -54,7 +54,7 @@ export function Layout({ children, sections = [] }) {
           </div>
         </div>
       </SectionProvider>
-      {!isLogged && <Login />}
+      {/*!isLogged && <Login />*/}
     </>
   )
 }

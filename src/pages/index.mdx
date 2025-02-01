@@ -1,15 +1,43 @@
-import { Guides } from '@/components/Guides'
-import { Resources } from '@/components/Resources'
-import { HeroPattern } from '@/components/HeroPattern'
+import { signIn, signOut, useSession } from "next-auth/react";
+import { Guides } from '@/components/Guides';
+import { Resources } from '@/components/Resources';
+import { HeroPattern } from '@/components/HeroPattern';
 
 export const description =
-  'ORIGIN / Internal Resources.'
+  'ORIGIN / Internal Resources.';
 
-<HeroPattern />
+export default function Home() {
+  const { data: session } = useSession();
 
-# Internal Resources
-Welcome to the Origin Resource Hub - designed to streamline access to essential resources, enabling each of you to navigate your roles with enhanced efficiency. {{ className: 'lead' }}
+  if (!session) {
+    // Show the login button if the user is not signed in
+    return (
+      <div>
+        <button onClick={() => signIn("microsoft")}>Sign In with Microsoft</button>
+      </div>
+    );
+  }
 
-This hub is your go-to place for documents, training materials, and essential tools. It's designed to simplify your work life by putting everything you need right at your fingertips. Find what you're looking for and make the most of this handy resource. Your efficiency is our priority, and this hub is here to support your everyday tasks. {{ className: 'lead' }}
+  // Once the user is logged in, show the internal resource page
+  return (
+    <div>
+      <p>Welcome, {session.user.name}!</p>
+      <button onClick={() => signOut()}>Sign Out</button>
+      
+      <HeroPattern />
+      <h1>Internal Resources</h1>
+      <p className="lead">
+        Welcome to the Origin Resource Hub - designed to streamline access to essential resources, enabling each of you to navigate your roles with enhanced efficiency.
+      </p>
+      <p className="lead">
+        This hub is your go-to place for documents, training materials, and essential tools. It's designed to simplify your work life by putting everything you need right at your fingertips. Find what you're looking for and make the most of this handy resource. Your efficiency is our priority, and this hub is here to support your everyday tasks.
+      </p>
+      <p className="lead">
+        Please let your supervisor know if there is something that you feel should be added as a resource. Thank you for your hard work and dedication.
+      </p>
 
-Please let your supervisor know if there is something that you feel should be added as a resource. Thank your for your hard work and dedication. {{ className: 'lead' }}
+      <Guides />
+      <Resources />
+    </div>
+  );
+}
