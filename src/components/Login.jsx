@@ -1,37 +1,43 @@
-import { useState } from 'react'
+import { signIn, signOut, useSession } from "next-auth/react";
 
-export function Login() {
-  const [password, setPassword] = useState('')
+export default function LandingPage() {
+    const { data: session, status } = useSession();
 
-  const handleClick = () => {
-    if (password === 'origin5') {
-      sessionStorage.setItem('token', 'confirmed')
-      sessionStorage.setItem('expiresAt', new Date().getTime() + 60 * 60 * 1000)
-      location.href = '/'
+    if (status === "loading") {
+        return (
+            <div className="flex items-center justify-center min-h-screen bg-gray-100">
+                <p className="text-gray-600 text-xl">Loading...</p>
+            </div>
+        );
     }
-  }
-  return (
-    <div className="fixed left-1/2 top-1/2 z-50 block h-full w-full -translate-x-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-sm">
-      <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="shadow-white-700 z-10 flex w-[300px] justify-between rounded bg-white shadow-md shadow-zinc-900">
-          <div className="m-4">
-            <input
-              type="password"
-              className="w-full border rounded px-2 py-2 text-sm placeholder-gray-400 focus:ring-0 focus:ring-offset-0"
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Access Code"
-            />
-          </div>
-          <div className="m-4">
-            <button
-              className="rounded bg-zinc-900 px-3 py-2 text-sm font-medium text-white hover:bg-zinc-900"
-              onClick={handleClick}
-            >
-              Confirm
-            </button>
-          </div>
+
+    return (
+        <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
+            <div className="bg-white text-gray-900 p-8 rounded-2xl shadow-xl w-96 text-center">
+                {!session ? (
+                    <>
+                        <h1 className="text-3xl font-bold mb-4">Welcome to ORIGIN</h1>
+                        <p className="mb-6 text-gray-600">Access internal resources securely with your Azure account.</p>
+                        <button
+                            onClick={() => signIn("azure-ad")}
+                            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-xl transition duration-300"
+                        >
+                            Sign In with Azure
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <h1 className="text-2xl font-semibold mb-2">Welcome, {session.user.name}!</h1>
+                        <p className="mb-4 text-gray-600">You are now logged in.</p>
+                        <button
+                            onClick={() => signOut()}
+                            className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-xl transition duration-300"
+                        >
+                            Sign Out
+                        </button>
+                    </>
+                )}
+            </div>
         </div>
-      </div>
-    </div>
-  )
+    );
 }
