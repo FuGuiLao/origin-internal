@@ -18,8 +18,7 @@ const nextConfig = {
     reactStrictMode: true,
     pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
     experimental: {
-        scrollRestoration: true,
-        appDir: false, // 🔥 Ensures correct API routing behavior
+        scrollRestoration: true, // ✅ Kept valid experimental option
     },
     async headers() {
         return [
@@ -34,4 +33,5 @@ const nextConfig = {
     },
 }
 
+// ✅ Exporting configuration correctly
 export default withSearch(withMDX(nextConfig))

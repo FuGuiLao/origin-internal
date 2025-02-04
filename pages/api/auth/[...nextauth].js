@@ -1,11 +1,11 @@
 ﻿import NextAuth from "next-auth";
-import { Credentials } from "next-auth/providers";
+import CredentialsProvider from "next-auth/providers/credentials";
 import passport from "passport";
 import { Strategy as SamlStrategy } from "passport-saml";
 
-export const authOptions = {
+export default NextAuth({
     providers: [
-        Credentials({
+        CredentialsProvider({
             id: "saml",
             name: "Azure AD SAML",
             async authorize(credentials, req) {
@@ -57,6 +57,4 @@ export const authOptions = {
         },
     },
     debug: true,
-};
-
-export default NextAuth(authOptions);
+});
