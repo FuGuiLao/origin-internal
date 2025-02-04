@@ -6,11 +6,11 @@ export default NextAuth({
         AzureADProvider({
             clientId: process.env.AZURE_AD_CLIENT_ID,
             clientSecret: process.env.AZURE_AD_CLIENT_SECRET,
-            tenantId: process.env.AZURE_AD_TENANT_ID, // Explicitly set your tenant ID
+            tenantId: process.env.AZURE_AD_TENANT_ID,
             authorization: {
                 params: {
                     scope: "openid profile email User.Read",
-                    response_type: "id_token", // Ensure ID token is returned
+                    response_type: "id_token",
                 },
             },
         }),
@@ -23,7 +23,7 @@ export default NextAuth({
             options: {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                sameSite: "none",
+                sameSite: "none", // Allows cross-site cookie usage
                 path: "/",
             },
         },
