@@ -6,17 +6,33 @@ export default NextAuth({
         AzureADProvider({
             clientId: process.env.AZURE_AD_CLIENT_ID,
             clientSecret: process.env.AZURE_AD_CLIENT_SECRET,
-            tenantId: process.env.AZURE_AD_TENANT_ID || "common", // Defaults to 'common' if not specified
-            authorization: { params: { scope: "openid profile email User.Read" } },
+            tenantId: process.env.AZURE_AD_TENANT_ID, // Explicitly set your tenant ID
+            authorization: {
+                params: {
+                    scope: "openid profile email User.Read",
+                    response_type: "id_token", // Ensure ID token is returned
+                },
+            },
         }),
     ],
     secret: process.env.NEXTAUTH_SECRET,
     session: { strategy: "jwt" },
+    cookies: {
+        sessionToken: {
+            name: `__Secure-next-auth.session-token`,
+            options: {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",
+                sameSite: "none",
+                path: "/",
+            },
+        },
+    },
     callbacks: {
         async jwt({ token, account, profile }) {
             if (account) {
                 token.accessToken = account.access_token;
-                token.id = profile?.oid || profile?.sub || profile?.id; // Ensure compatibility with different Azure claims
+                token.id = profile?.oid || profile?.sub || profile?.id || token.sub;
             }
             return token;
         },
@@ -27,8 +43,8 @@ export default NextAuth({
         },
     },
     pages: {
-        signIn: "/login", // Redirect to custom login page if needed
-        error: "/auth/error" // Custom error handling page
+        signIn: "/login",
+        error: "/auth/error"
     },
-    debug: process.env.NODE_ENV === "development", // Enable debugging in development mode
+    debug: process.env.NODE_ENV === "development",
 });
