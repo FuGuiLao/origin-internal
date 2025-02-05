@@ -6,15 +6,42 @@ import { Logo } from '@/components/Logo';
 import { Navigation } from '@/components/Navigation';
 import { Prose } from '@/components/Prose';
 import { SectionProvider } from '@/components/SectionProvider';
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export function Layout({ children, sections = [] }) {
     const { data: session, status } = useSession();
+    const router = useRouter();
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        // Capture SAML response from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const samlResponse = urlParams.get("samlResponse");
+
+        if (samlResponse) {
+            sessionStorage.setItem("samlToken", samlResponse);
+            router.replace("/"); // Removes SAML response from URL
+        }
+    }, []);
+
+    // Handle Login - Redirects user to NextAuth SAML sign-in page
+    const handleLogin = () => {
+        setLoading(true);
+        window.location.href = `/api/auth/signin/saml`; // Forces GET request for NextAuth SAML
+    };
+
+    // Handle Logout
+    const handleLogout = async () => {
+        setLoading(true);
+        window.location.href = `/api/auth/signout`; // Ensures logout request works
+    };
 
     if (status === "loading") {
         return (
             <div className="flex items-center justify-center min-h-screen bg-gray-100">
-                <p className="text-gray-600 text-xl">Loading...</p>
+                <p className="text-gray-600 text-xl">Checking authentication...</p>
             </div>
         );
     }
@@ -24,12 +51,16 @@ export function Layout({ children, sections = [] }) {
             <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
                 <div className="bg-white text-gray-900 p-8 rounded-2xl shadow-xl w-96 text-center">
                     <h1 className="text-3xl font-bold mb-4">Welcome to ORIGIN</h1>
-                    <p className="mb-6 text-gray-600">Access internal resources securely with your Microsoft 365 account.</p>
+                    <p className="mb-6 text-gray-600">
+                        Access internal resources securely with your Microsoft 365 account.
+                    </p>
                     <button
-                        onClick={() => signIn("microsoft")}
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-xl transition duration-300"
+                        onClick={handleLogin}
+                        disabled={loading}
+                        className={`w-full ${loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"} 
+                            text-white font-semibold py-2 px-4 rounded-xl transition duration-300`}
                     >
-                        Sign In with Microsoft
+                        {loading ? "Signing In..." : "Sign In with Microsoft"}
                     </button>
                 </div>
             </div>
@@ -60,10 +91,12 @@ export function Layout({ children, sections = [] }) {
                         </main>
                         <Footer />
                         <button
-                            onClick={() => signOut()}
-                            className="fixed bottom-4 right-4 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-xl"
+                            onClick={handleLogout}
+                            disabled={loading}
+                            className={`fixed bottom-4 right-4 ${loading ? "bg-gray-400" : "bg-red-500 hover:bg-red-600"} 
+                                text-white font-semibold py-2 px-4 rounded-xl`}
                         >
-                            Sign Out
+                            {loading ? "Signing Out..." : "Sign Out"}
                         </button>
                     </div>
                 </div>

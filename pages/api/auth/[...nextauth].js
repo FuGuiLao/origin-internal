@@ -8,7 +8,12 @@ export default NextAuth({
         CredentialsProvider({
             id: "saml",
             name: "Azure AD SAML",
+            credentials: {},
             async authorize(credentials, req) {
+                if (req.method !== "GET") {
+                    throw new Error("SAML authentication must be initiated via GET request");
+                }
+
                 if (!passport._strategy("saml")) {
                     passport.use(
                         new SamlStrategy(
@@ -18,7 +23,6 @@ export default NextAuth({
                                 callbackUrl: process.env.SAML_SP_CALLBACK_URL,
                                 cert: process.env.SAML_IDP_CERT,
                                 privateKey: process.env.SAML_SP_PRIVATE_KEY,
-                                decryptionPvk: process.env.SAML_SP_PRIVATE_KEY,
                                 signatureAlgorithm: "sha256",
                                 wantAssertionsSigned: true,
                                 validateInResponseTo: true,
@@ -56,5 +60,6 @@ export default NextAuth({
             return url.startsWith(baseUrl) ? url : baseUrl;
         },
     },
+    useSecureCookies: process.env.NODE_ENV === "production",
     debug: true,
 });
