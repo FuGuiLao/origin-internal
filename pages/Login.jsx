@@ -1,6 +1,6 @@
 ﻿import { useEffect, useState } from "react";
-import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function LoginPage() {
     const { data: session, status } = useSession();
@@ -14,21 +14,20 @@ export default function LoginPage() {
 
         if (samlResponse) {
             sessionStorage.setItem("samlToken", samlResponse);
-            router.replace("/"); // Remove SAML response from URL
+            router.replace("/"); // ✅ Remove SAML response from URL
         }
     }, []);
 
-    // Handle Login - Redirects user to /api/auth/signin/saml (GET Request)
-    const handleLogin = () => {
+    // Handle Login - Redirects user to /api/auth/signin/saml (NextAuth)
+    const handleLogin = async () => {
         setLoading(true);
-        window.location.href = `/api/auth/signin/saml`; // Forces GET request for NextAuth SAML
+        await signIn("saml"); // ✅ Uses NextAuth.js to initiate Azure SAML login
     };
 
     // Handle Logout
     const handleLogout = async () => {
         setLoading(true);
-        await signOut({ callbackUrl: "/" });
-        setLoading(false);
+        await signOut({ callbackUrl: "/" }); // ✅ Clears session & redirects to home
     };
 
     if (status === "loading") {
@@ -45,9 +44,7 @@ export default function LoginPage() {
                 {!session ? (
                     <>
                         <h1 className="text-3xl font-bold mb-4">Welcome to ORIGIN</h1>
-                        <p className="mb-6 text-gray-600">
-                            Access internal resources securely with your Microsoft 365 account.
-                        </p>
+                        <p className="mb-6 text-gray-600">Access internal resources securely with your Microsoft 365 account.</p>
                         <button
                             onClick={handleLogin}
                             disabled={loading}
