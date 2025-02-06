@@ -1,7 +1,7 @@
 ﻿import NextAuth from "next-auth";
 
 export default NextAuth({
-    providers: [],
+    providers: [], // ❌ SAML is removed from here
     secret: process.env.NEXTAUTH_SECRET,
     session: { strategy: "jwt" },
 
@@ -19,7 +19,7 @@ export default NextAuth({
     },
 
     pages: {
-        signIn: "/login",
+        signIn: "/login", // User will go to our custom SAML login instead
         signOut: "/",
     },
 

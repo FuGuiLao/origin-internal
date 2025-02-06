@@ -3,7 +3,7 @@ import passport from "passport";
 import { Strategy as SamlStrategy } from "passport-saml";
 import nextConnect from "next-connect";
 
-// Initialize Passport with SAML Strategy
+// ✅ Initialize Passport with SAML Strategy
 passport.use(
     new SamlStrategy(
         {
@@ -35,12 +35,12 @@ passport.use(
 
 const handler = nextConnect();
 
-// Handle SAML Login Request (GET request initiates login)
+// ✅ Handle SAML Login Request (GET request to start login flow)
 handler.get((req, res, next) => {
     passport.authenticate("saml")(req, res, next);
 });
 
-// Handle SAML Callback (POST request from Azure AD)
+// ✅ Handle SAML Callback (POST request from Azure AD)
 handler.post((req, res, next) => {
     passport.authenticate("saml", async (err, user) => {
         if (err || !user) {
@@ -50,7 +50,7 @@ handler.post((req, res, next) => {
 
         console.log("✅ SAML User Authenticated:", user);
 
-        // 🔐 Create a NextAuth session manually
+        // 🔐 Create a manual session using cookies
         const sessionToken = JSON.stringify({ user, expires: new Date(Date.now() + 86400 * 1000) });
         const cookie = serialize("next-auth.session-token", sessionToken, {
             httpOnly: true,
