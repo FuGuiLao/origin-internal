@@ -1,6 +1,5 @@
 ﻿import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
 import { Guides } from '@/components/Guides';
 import { Resources } from '@/components/Resources';
 import { HeroPattern } from '@/components/HeroPattern';
@@ -8,34 +7,43 @@ import { HeroPattern } from '@/components/HeroPattern';
 export const description = 'ORIGIN / Internal Resources.';
 
 export default function Home() {
-    const { data: session, status } = useSession();
     const router = useRouter();
-    const [loading, setLoading] = useState(false);
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Capture SAML response from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const samlResponse = urlParams.get("samlResponse");
+        // Retrieve session token from cookies
+        const token = document.cookie
+            .split("; ")
+            .find(row => row.startsWith("next-auth.session-token="))
+            ?.split("=")[1];
 
-        if (samlResponse) {
-            sessionStorage.setItem("samlToken", samlResponse);
-            router.replace("/"); // ✅ Removes SAML response from URL
+        if (token) {
+            try {
+                const sessionData = JSON.parse(decodeURIComponent(token));
+                setUser(sessionData.user);
+            } catch (error) {
+                console.error("Failed to parse session data:", error);
+            }
         }
+
+        setLoading(false);
     }, []);
 
-    // Handle Login - Redirects user to NextAuth SAML sign-in page
+    // Handle SAML Login - Redirects user to custom SAML API route
     const handleLogin = () => {
         setLoading(true);
-        window.location.href = `/api/auth/signin/saml`; // ✅ Forces GET request for NextAuth SAML
+        window.location.href = `/api/auth/saml`;
     };
 
     // Handle Logout
-    const handleLogout = async () => {
+    const handleLogout = () => {
         setLoading(true);
-        window.location.href = `/api/auth/signout`; // ✅ Ensures logout request works
+        document.cookie = "next-auth.session-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        router.push("/");
     };
 
-    if (status === "loading") {
+    if (loading) {
         return (
             <div className="flex items-center justify-center min-h-screen bg-gray-100">
                 <p className="text-gray-600 text-xl">Checking authentication...</p>
@@ -43,7 +51,7 @@ export default function Home() {
         );
     }
 
-    if (!session) {
+    if (!user) {
         return (
             <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
                 <div className="bg-white text-gray-900 p-8 rounded-2xl shadow-xl w-96 text-center">
@@ -67,27 +75,34 @@ export default function Home() {
     return (
         <div>
             <HeroPattern />
-            <h1>Internal Resources</h1>
-            <p className="lead">Welcome, {session.user.name}!</p>
-            <p className="lead">
-                Welcome to the Origin Resource Hub - designed to streamline access to essential resources, enabling each of you to navigate your roles with enhanced efficiency.
-            </p>
-            <p className="lead">
-                This hub is your go-to place for documents, training materials, and essential tools. It's designed to simplify your work life by putting everything you need right at your fingertips. Find what you're looking for and make the most of this handy resource. Your efficiency is our priority, and this hub is here to support your everyday tasks.
-            </p>
-            <p className="lead">
-                Please let your supervisor know if there is something that you feel should be added as a resource. Thank you for your hard work and dedication.
-            </p>
+            <h1 className="text-3xl font-bold text-center mt-6">Internal Resources</h1>
+            <p className="text-center text-lg mt-2">Welcome, {user.name || "User"}!</p>
+            <p className="text-center text-gray-600">{user.email || "No email available"}</p>
 
-            <Guides />
-            <Resources />
+            <div className="max-w-4xl mx-auto mt-6 text-gray-800">
+                <p className="mb-4">
+                    Welcome to the Origin Resource Hub - designed to streamline access to essential resources, enabling each of you to navigate your roles with enhanced efficiency.
+                </p>
+                <p className="mb-4">
+                    This hub is your go-to place for documents, training materials, and essential tools. It's designed to simplify your work life by putting everything you need right at your fingertips. Find what you're looking for and make the most of this handy resource. Your efficiency is our priority, and this hub is here to support your everyday tasks.
+                </p>
+                <p className="mb-4">
+                    Please let your supervisor know if there is something that you feel should be added as a resource. Thank you for your hard work and dedication.
+                </p>
+            </div>
 
-            <div className="mt-6">
+            <div className="mt-6 max-w-6xl mx-auto">
+                <Guides />
+                <Resources />
+            </div>
+
+            <div className="text-center mt-6">
                 <button
                     onClick={handleLogout}
                     disabled={loading}
-                    className={`w-full ${loading ? "bg-gray-400" : "bg-red-500 hover:bg-red-600"} 
-                        text-white font-semibold py-2 px-4 rounded-xl transition duration-300`}
+                    className={`px-6 py-2 text-white font-semibold rounded-xl transition duration-300 ${
+                        loading ? "bg-gray-400" : "bg-red-500 hover:bg-red-600"
+                    }`}
                 >
                     {loading ? "Signing Out..." : "Sign Out"}
                 </button>
