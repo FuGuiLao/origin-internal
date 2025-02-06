@@ -15,13 +15,13 @@ export default function LoginPage() {
         }
     }, []);
 
-    // Handle SAML Login - Redirects user to our custom SAML API route
+    // ✅ Redirects user to Azure AD via SAML
     const handleLogin = () => {
         setLoading(true);
         window.location.href = `/api/auth/saml`;
     };
 
-    // Handle Logout
+    // ✅ Clears session manually
     const handleLogout = () => {
         setLoading(true);
         document.cookie = "next-auth.session-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";

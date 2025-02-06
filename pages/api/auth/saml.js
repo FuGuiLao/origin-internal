@@ -35,12 +35,12 @@ passport.use(
 
 const handler = nextConnect();
 
-// ✅ Handle SAML Login Request (GET request to start login flow)
+// ✅ SAML Login - Redirects user to Azure AD
 handler.get((req, res, next) => {
     passport.authenticate("saml")(req, res, next);
 });
 
-// ✅ Handle SAML Callback (POST request from Azure AD)
+// ✅ SAML Callback - Handles POST response from Azure AD
 handler.post((req, res, next) => {
     passport.authenticate("saml", async (err, user) => {
         if (err || !user) {
