@@ -12,18 +12,14 @@ export default function Home() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // ✅ Fetch user info securely from API instead of reading cookies directly
+        // ✅ Fetch session data securely
         const fetchUser = async () => {
             try {
-                const res = await fetch("/api/auth/signin/userinfo");
-                if (res.ok) {
-                    const data = await res.json();
-                    setUser(data.user);
-                } else {
-                    setUser(null);
-                }
+                const res = await fetch("/api/auth/session");
+                const data = await res.json();
+                setUser(data.user);
             } catch (error) {
-                console.error("Failed to fetch user info:", error);
+                console.error("Failed to fetch session:", error);
                 setUser(null);
             } finally {
                 setLoading(false);
@@ -33,16 +29,14 @@ export default function Home() {
         fetchUser();
     }, []);
 
-    // ✅ Handle SAML Login - Redirects user to SAML authentication
     const handleLogin = () => {
         setLoading(true);
         window.location.href = `/api/auth/signin/saml`;
     };
 
-    // ✅ Handle Logout - Clears session and reloads page
     const handleLogout = async () => {
         setLoading(true);
-        await fetch("/api/auth/signout"); // Ensure session is cleared on backend
+        await fetch("/api/auth/signout");
         document.cookie = "next-auth.session-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
         router.reload();
     };
@@ -83,32 +77,12 @@ export default function Home() {
             <p className="text-center text-lg mt-2">Welcome, {user.name || "User"}!</p>
             <p className="text-center text-gray-600">{user.email || "No email available"}</p>
 
-            <div className="max-w-4xl mx-auto mt-6 text-gray-800">
-                <p className="mb-4">
-                    Welcome to the Origin Resource Hub - designed to streamline access to essential resources, enabling each of you to navigate your roles with enhanced efficiency.
-                </p>
-                <p className="mb-4">
-                    This hub is your go-to place for documents, training materials, and essential tools. It's designed to simplify your work life by putting everything you need right at your fingertips. Find what you're looking for and make the most of this handy resource. Your efficiency is our priority, and this hub is here to support your everyday tasks.
-                </p>
-                <p className="mb-4">
-                    Please let your supervisor know if there is something that you feel should be added as a resource. Thank you for your hard work and dedication.
-                </p>
-            </div>
-
-            <div className="mt-6 max-w-6xl mx-auto">
-                <Guides />
-                <Resources />
-            </div>
-
             <div className="text-center mt-6">
                 <button
                     onClick={handleLogout}
-                    disabled={loading}
-                    className={`px-6 py-2 text-white font-semibold rounded-xl transition duration-300 ${
-                        loading ? "bg-gray-400" : "bg-red-500 hover:bg-red-600"
-                    }`}
+                    className="px-6 py-2 text-white font-semibold bg-red-500 hover:bg-red-600 rounded-xl transition duration-300"
                 >
-                    {loading ? "Signing Out..." : "Sign Out"}
+                    Sign Out
                 </button>
             </div>
         </div>
