@@ -12,35 +12,39 @@ export default function Home() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Retrieve session token from cookies
-        const token = document.cookie
-            .split("; ")
-            .find(row => row.startsWith("next-auth.session-token="))
-            ?.split("=")[1];
-
-        if (token) {
+        // ✅ Fetch user info securely from API instead of reading cookies directly
+        const fetchUser = async () => {
             try {
-                const sessionData = JSON.parse(decodeURIComponent(token));
-                setUser(sessionData.user);
+                const res = await fetch("/api/auth/signin/userinfo");
+                if (res.ok) {
+                    const data = await res.json();
+                    setUser(data.user);
+                } else {
+                    setUser(null);
+                }
             } catch (error) {
-                console.error("Failed to parse session data:", error);
+                console.error("Failed to fetch user info:", error);
+                setUser(null);
+            } finally {
+                setLoading(false);
             }
-        }
+        };
 
-        setLoading(false);
+        fetchUser();
     }, []);
 
-    // Handle SAML Login - Redirects user to our custom SAML API route
+    // ✅ Handle SAML Login - Redirects user to SAML authentication
     const handleLogin = () => {
         setLoading(true);
-        window.location.href = `/api/auth/saml`;
+        window.location.href = `/api/auth/signin/saml`;
     };
 
-    // Handle Logout - Clears session manually
-    const handleLogout = () => {
+    // ✅ Handle Logout - Clears session and reloads page
+    const handleLogout = async () => {
         setLoading(true);
+        await fetch("/api/auth/signout"); // Ensure session is cleared on backend
         document.cookie = "next-auth.session-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-        router.push("/");
+        router.reload();
     };
 
     if (loading) {

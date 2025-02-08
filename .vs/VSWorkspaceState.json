@@ -1,8 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
-    "\\public\\mpp-case-management"
+    "\\pages",
+    "\\pages\\api",
+    "\\pages\\api\\auth",
+    "\\public\\mpp-case-management",
+    "\\src",
+    "\\src\\components"
   ],
+  "SelectedNode": "\\pages\\api\\auth\\signin",
   "PreviewInSolutionExplorer": false
 }

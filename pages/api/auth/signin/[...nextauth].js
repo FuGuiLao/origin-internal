@@ -1,19 +1,25 @@
 ﻿import NextAuth from "next-auth";
 
 export default NextAuth({
-    providers: [], // No SAML here
+    providers: [], // ❌ SAML is handled externally in /api/auth/callback/saml
     secret: process.env.NEXTAUTH_SECRET,
-    session: { strategy: "jwt" },
+    session: { strategy: "jwt" }, // ✅ Use JWT to store user session
 
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
-                token.user = user;
+                token.id = user.id;
+                token.name = user.name;
+                token.email = user.email;
             }
             return token;
         },
         async session({ session, token }) {
-            session.user = token.user;
+            session.user = {
+                id: token.id,
+                name: token.name,
+                email: token.email,
+            };
             return session;
         },
     },
@@ -23,17 +29,5 @@ export default NextAuth({
         signOut: "/",
     },
 
-    logger: {
-        error(code, metadata) {
-            console.error("❌ NextAuth Error:", code, metadata);
-        },
-        warn(code) {
-            console.warn("⚠️ NextAuth Warning:", code);
-        },
-        debug(code, metadata) {
-            console.debug("🔍 NextAuth Debug:", code, metadata);
-        },
-    },
-
-    debug: true,  // ✅ Enables full debug logging
+    debug: true,
 });

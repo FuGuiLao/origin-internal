@@ -15,10 +15,10 @@ export default function LoginPage() {
         }
     }, []);
 
-    // ✅ Redirects user to Azure AD via SAML
+    // ✅ Redirects user to `/api/auth/signin/saml` for authentication
     const handleLogin = () => {
         setLoading(true);
-        window.location.href = `/api/auth/saml`;
+        window.location.href = `/api/auth/signin/saml`;
     };
 
     // ✅ Clears session manually
