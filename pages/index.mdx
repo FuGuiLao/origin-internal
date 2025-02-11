@@ -1,8 +1,5 @@
 ﻿import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Guides } from '@/components/Guides';
-import { Resources } from '@/components/Resources';
-import { HeroPattern } from '@/components/HeroPattern';
 
 export const description = 'ORIGIN / Internal Resources.';
 
@@ -12,20 +9,22 @@ export default function Home() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // ✅ Fetch session data securely
         const fetchUser = async () => {
             try {
-                const res = await fetch("/api/auth/session");
-                const data = await res.json();
-                setUser(data.user);
+                const res = await fetch("/api/auth/signin/userinfo");
+                if (res.ok) {
+                    const data = await res.json();
+                    setUser(data.user);
+                } else {
+                    setUser(null);
+                }
             } catch (error) {
-                console.error("Failed to fetch session:", error);
+                console.error("Failed to fetch user info:", error);
                 setUser(null);
             } finally {
                 setLoading(false);
             }
         };
-
         fetchUser();
     }, []);
 
@@ -52,16 +51,15 @@ export default function Home() {
     if (!user) {
         return (
             <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
-                <div className="bg-white text-gray-900 p-8 rounded-2xl shadow-xl w-96 text-center">
-                    <h1 className="text-3xl font-bold mb-4">Welcome to ORIGIN</h1>
+                <div className="bg-white text-gray-900 p-12 rounded-2xl shadow-2xl w-full max-w-md text-center">
+                    <h1 className="text-4xl font-bold mb-6">Welcome to ORIGIN</h1>
                     <p className="mb-6 text-gray-600">
                         Access internal resources securely with your Microsoft 365 account.
                     </p>
                     <button
                         onClick={handleLogin}
                         disabled={loading}
-                        className={`w-full ${loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"} 
-                            text-white font-semibold py-2 px-4 rounded-xl transition duration-300`}
+                        className={`w-full py-3 px-6 text-lg font-semibold rounded-lg transition duration-300 ${loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700 text-white"}`}
                     >
                         {loading ? "Signing In..." : "Sign In with Microsoft 365"}
                     </button>
@@ -71,20 +69,17 @@ export default function Home() {
     }
 
     return (
-        <div>
-            <HeroPattern />
-            <h1 className="text-3xl font-bold text-center mt-6">Internal Resources</h1>
-            <p className="text-center text-lg mt-2">Welcome, {user.name || "User"}!</p>
-            <p className="text-center text-gray-600">{user.email || "No email available"}</p>
-
-            <div className="text-center mt-6">
-                <button
-                    onClick={handleLogout}
-                    className="px-6 py-2 text-white font-semibold bg-red-500 hover:bg-red-600 rounded-xl transition duration-300"
-                >
-                    Sign Out
-                </button>
-            </div>
+        <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center text-gray-900">
+            <h1 className="text-3xl font-bold">Internal Resources</h1>
+            <p className="text-lg mt-2">Welcome, {user.name || "User"}!</p>
+            <p className="text-gray-600">{user.email || "No email available"}</p>
+            <button
+                onClick={handleLogout}
+                disabled={loading}
+                className={`mt-6 px-6 py-3 text-lg font-semibold rounded-lg transition duration-300 ${loading ? "bg-gray-400" : "bg-red-500 hover:bg-red-600 text-white"}`}
+            >
+                {loading ? "Signing Out..." : "Sign Out"}
+            </button>
         </div>
     );
 }
