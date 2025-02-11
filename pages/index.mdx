@@ -1,8 +1,6 @@
 ﻿import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-export const description = 'ORIGIN / Internal Resources.';
-
 export default function Home() {
     const router = useRouter();
     const [user, setUser] = useState(null);
@@ -16,69 +14,37 @@ export default function Home() {
                     const data = await res.json();
                     setUser(data.user);
                 } else {
-                    setUser(null);
+                    router.push("/login"); // Redirect to login if not authenticated
                 }
             } catch (error) {
                 console.error("Failed to fetch user info:", error);
-                setUser(null);
+                router.push("/login");
             } finally {
                 setLoading(false);
             }
         };
+
         fetchUser();
-    }, []);
-
-    const handleLogin = () => {
-        setLoading(true);
-        window.location.href = `/api/auth/signin/saml`;
-    };
-
-    const handleLogout = async () => {
-        setLoading(true);
-        await fetch("/api/auth/signout");
-        document.cookie = "next-auth.session-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-        router.reload();
-    };
+    }, [router]);
 
     if (loading) {
-        return (
-            <div className="flex items-center justify-center min-h-screen bg-gray-100">
-                <p className="text-gray-600 text-xl">Checking authentication...</p>
-            </div>
-        );
-    }
-
-    if (!user) {
-        return (
-            <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
-                <div className="bg-white text-gray-900 p-12 rounded-2xl shadow-2xl w-full max-w-md text-center">
-                    <h1 className="text-4xl font-bold mb-6">Welcome to ORIGIN</h1>
-                    <p className="mb-6 text-gray-600">
-                        Access internal resources securely with your Microsoft 365 account.
-                    </p>
-                    <button
-                        onClick={handleLogin}
-                        disabled={loading}
-                        className={`w-full py-3 px-6 text-lg font-semibold rounded-lg transition duration-300 ${loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700 text-white"}`}
-                    >
-                        {loading ? "Signing In..." : "Sign In with Microsoft 365"}
-                    </button>
-                </div>
-            </div>
-        );
+        return <p className="text-center text-gray-600 text-xl">Loading...</p>;
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center text-gray-900">
-            <h1 className="text-3xl font-bold">Internal Resources</h1>
-            <p className="text-lg mt-2">Welcome, {user.name || "User"}!</p>
-            <p className="text-gray-600">{user.email || "No email available"}</p>
+        <div className="min-h-screen flex flex-col items-center justify-center text-gray-900">
+            <h1 className="text-3xl font-bold">Welcome, {user?.name || "User"}!</h1>
+            <p className="text-lg mt-2">{user?.email || "No email available"}</p>
             <button
-                onClick={handleLogout}
-                disabled={loading}
-                className={`mt-6 px-6 py-3 text-lg font-semibold rounded-lg transition duration-300 ${loading ? "bg-gray-400" : "bg-red-500 hover:bg-red-600 text-white"}`}
+                onClick={() => {
+                    fetch("/api/auth/signout").then(() => {
+                        document.cookie = "next-auth.session-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+                        router.push("/login");
+                    });
+                }}
+                className="mt-6 px-6 py-3 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg"
             >
-                {loading ? "Signing Out..." : "Sign Out"}
+                Sign Out
             </button>
         </div>
     );
