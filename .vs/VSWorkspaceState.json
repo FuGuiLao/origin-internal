@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
     "",
+<<<<<<< Updated upstream
     "\\pages",
     "\\pages\\api",
     "\\pages\\api\\auth",
@@ -9,5 +10,11 @@
     "\\src\\components"
   ],
   "SelectedNode": "\\pages\\api\\auth\\signin",
+=======
+    "\\src",
+    "\\src\\components"
+  ],
+  "SelectedNode": "\\Protocol",
+>>>>>>> Stashed changes
   "PreviewInSolutionExplorer": false
 }

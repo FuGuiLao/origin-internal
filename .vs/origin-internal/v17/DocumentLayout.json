@@ -1,0 +1,259 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Github\\FuGuiLao\\origin-internal\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Github\\FuGuiLao\\origin-internal\\src\\components\\Layout.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\Layout.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Github\\FuGuiLao\\origin-internal\\pages\\Login.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\Login.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\callback\\saml.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\api\\auth\\callback\\saml.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\signin\\saml.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\api\\auth\\signin\\saml.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\session.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\api\\auth\\session.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Github\\FuGuiLao\\origin-internal\\pages\\index.mdx||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\index.mdx||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\signin\\userinfo.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\api\\auth\\signin\\userinfo.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\signin\\token.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\api\\auth\\signin\\token.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\signin\\[...nextauth].js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\api\\auth\\signin\\[...nextauth].js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Github\\FuGuiLao\\origin-internal\\pages\\status.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\status.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Github\\FuGuiLao\\origin-internal\\src\\components\\AzureLogin.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\AzureLogin.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Github\\FuGuiLao\\origin-internal\\next.config.mjs||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:next.config.mjs||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\callback\\saml-callback.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\api\\auth\\callback\\saml-callback.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Github\\FuGuiLao\\origin-internal\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 12,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "next.config.mjs",
+              "DocumentMoniker": "E:\\Github\\FuGuiLao\\origin-internal\\next.config.mjs",
+              "RelativeDocumentMoniker": "next.config.mjs",
+              "ToolTip": "E:\\Github\\FuGuiLao\\origin-internal\\next.config.mjs",
+              "RelativeToolTip": "next.config.mjs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-02-01T01:20:11.283Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "session.js",
+              "DocumentMoniker": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\session.js",
+              "RelativeDocumentMoniker": "pages\\api\\auth\\session.js",
+              "ToolTip": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\session.js",
+              "RelativeToolTip": "pages\\api\\auth\\session.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-02-08T01:56:23.741Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "saml.js",
+              "DocumentMoniker": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\signin\\saml.js",
+              "RelativeDocumentMoniker": "pages\\api\\auth\\signin\\saml.js",
+              "ToolTip": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\signin\\saml.js",
+              "RelativeToolTip": "pages\\api\\auth\\signin\\saml.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-02-08T01:46:02.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "saml.js",
+              "DocumentMoniker": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\callback\\saml.js",
+              "RelativeDocumentMoniker": "pages\\api\\auth\\callback\\saml.js",
+              "ToolTip": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\callback\\saml.js",
+              "RelativeToolTip": "pages\\api\\auth\\callback\\saml.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-02-06T02:05:13.995Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AzureLogin.js",
+              "DocumentMoniker": "E:\\Github\\FuGuiLao\\origin-internal\\src\\components\\AzureLogin.js",
+              "RelativeDocumentMoniker": "src\\components\\AzureLogin.js",
+              "ToolTip": "E:\\Github\\FuGuiLao\\origin-internal\\src\\components\\AzureLogin.js",
+              "RelativeToolTip": "src\\components\\AzureLogin.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-02-06T00:14:01.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "userinfo.js",
+              "DocumentMoniker": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\signin\\userinfo.js",
+              "RelativeDocumentMoniker": "pages\\api\\auth\\signin\\userinfo.js",
+              "ToolTip": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\signin\\userinfo.js",
+              "RelativeToolTip": "pages\\api\\auth\\signin\\userinfo.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-02-06T00:12:37.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "token.js",
+              "DocumentMoniker": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\signin\\token.js",
+              "RelativeDocumentMoniker": "pages\\api\\auth\\signin\\token.js",
+              "ToolTip": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\signin\\token.js",
+              "RelativeToolTip": "pages\\api\\auth\\signin\\token.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-02-06T00:12:31.173Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "saml-callback.js",
+              "DocumentMoniker": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\callback\\saml-callback.js",
+              "RelativeDocumentMoniker": "pages\\api\\auth\\callback\\saml-callback.js",
+              "ToolTip": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\callback\\saml-callback.js",
+              "RelativeToolTip": "pages\\api\\auth\\callback\\saml-callback.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-02-05T00:01:16.422Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "status.js",
+              "DocumentMoniker": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\status.js",
+              "RelativeDocumentMoniker": "pages\\status.js",
+              "ToolTip": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\status.js",
+              "RelativeToolTip": "pages\\status.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-02-04T20:48:02.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "[...nextauth].js",
+              "DocumentMoniker": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\signin\\[...nextauth].js",
+              "RelativeDocumentMoniker": "pages\\api\\auth\\signin\\[...nextauth].js",
+              "ToolTip": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\api\\auth\\signin\\[...nextauth].js",
+              "RelativeToolTip": "pages\\api\\auth\\signin\\[...nextauth].js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-02-04T19:53:23.543Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Login.jsx",
+              "DocumentMoniker": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\Login.jsx",
+              "RelativeDocumentMoniker": "pages\\Login.jsx",
+              "ToolTip": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\Login.jsx",
+              "RelativeToolTip": "pages\\Login.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-02-01T01:34:16.955Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "index.mdx",
+              "DocumentMoniker": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\index.mdx",
+              "RelativeDocumentMoniker": "pages\\index.mdx",
+              "ToolTip": "E:\\Github\\FuGuiLao\\origin-internal\\pages\\index.mdx",
+              "RelativeToolTip": "pages\\index.mdx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAACMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-02-01T01:26:34.249Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Layout.jsx",
+              "DocumentMoniker": "E:\\Github\\FuGuiLao\\origin-internal\\src\\components\\Layout.jsx",
+              "RelativeDocumentMoniker": "src\\components\\Layout.jsx",
+              "ToolTip": "E:\\Github\\FuGuiLao\\origin-internal\\src\\components\\Layout.jsx",
+              "RelativeToolTip": "src\\components\\Layout.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-02-01T01:24:08.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "README.md",
+              "DocumentMoniker": "E:\\Github\\FuGuiLao\\origin-internal\\README.md",
+              "RelativeDocumentMoniker": "README.md",
+              "ToolTip": "E:\\Github\\FuGuiLao\\origin-internal\\README.md",
+              "RelativeToolTip": "README.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAACBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-02-01T01:21:34.374Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
